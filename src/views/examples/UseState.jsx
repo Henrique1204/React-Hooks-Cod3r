@@ -3,7 +3,8 @@ import PageTitle from '../../components/layout/PageTitle';
 import SectionTitle from '../../components/layout/SectionTitle';
 
 const UseState = (props) => {
-    const [ count, setCount ] = React.useState(0);
+    const [count, setCount] = React.useState(0);
+    const [name, setName] = React.useState("");
 
     return (
         <div className="UseState">
@@ -13,7 +14,6 @@ const UseState = (props) => {
             />
 
             <SectionTitle title="Exercicio #01" />
-
             <div className="center">
                 <span className="text">{count}</span>
                 <div>
@@ -23,6 +23,7 @@ const UseState = (props) => {
             </div>
 
             <SectionTitle title="Exercicio #02" />
+            <input className="input" type="text" value={name} onChange={({ target }) => setName(target.value)} />
         </div>
     );
 };
