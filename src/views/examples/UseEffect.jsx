@@ -11,13 +11,19 @@ function calcularFat(n) {
     return calcularFat(number - 1) * number;
 }
 
+const testarImparPar = (n) => (n === "" ? "Valor vazio" : Number(n) % 2 === 0 ? "par" : "impar");
+
 const UseEffect = (props) => {
     const [number, setNumber] = React.useState(1);
     const [fatorial, setFatorial] = React.useState(1);
+    const [imparPar, setImparPar] = React.useState("impar");
 
     React.useEffect(() => {
-        console.log(Number(number));
         setFatorial(calcularFat(number));
+    }, [number]);
+
+    React.useEffect(() => {
+        setImparPar(testarImparPar(number));
     }, [number]);
 
     return (
@@ -33,6 +39,11 @@ const UseEffect = (props) => {
                     Fatorial: <span className="red">{fatorial === -1 ? "Valor não existe" : fatorial}</span>
                 </p>
                 <input className="input" type="number" value={number} onChange={({ target }) => setNumber(target.value)} />
+            </div>
+
+            <SectionTitle title="Exercício #02" />
+            <div className="center">
+            <p className="text red" >{imparPar}</p>
             </div>
         </div>
     );
