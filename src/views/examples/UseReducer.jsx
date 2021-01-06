@@ -10,6 +10,10 @@ const initialState = {
 const reducer = (state, action) => {
     switch(action.type) {
         case "number_add2": return { ...state, number: state.number + 2 };
+        case "number_mult7": return { ...state, number: state.number * 7 };
+        case "number_divi25": return { ...state, number: state.number / 25 };
+        case "number_parse": return { ...state, number: Math.round(state.number) };
+        case "number_sum": return { ...state, number: state.number + action.payload };
         case "login": return { ...state, user: { nome: action.payload } };
         default: return state;
     }
@@ -39,6 +43,32 @@ const UseReducer = (props) => {
                         className="btn"
                         onClick={() => dispatch({ type: "login", payload: "Paulo" })}
                     >login</button>
+                </div>
+            </div>
+
+            <SectionTitle title="Exercício #02" />
+            <div className="center">
+                <span className="text">{state.number}</span>
+                <div>
+                    <button
+                        className="btn"
+                        onClick={() => dispatch({ type: "number_mult7" })}
+                    >X7</button>
+
+                    <button
+                        className="btn"
+                        onClick={() => dispatch({ type: "number_divi25" })}
+                    >/25</button>
+
+                    <button
+                        className="btn"
+                        onClick={() => dispatch({ type: "number_parse" })}
+                    >Arredondar</button>
+
+                    <button
+                        className="btn"
+                        onClick={() => dispatch({ type: "number_sum", payload: 5 })}
+                    >+5</button>
                 </div>
             </div>
         </div>
