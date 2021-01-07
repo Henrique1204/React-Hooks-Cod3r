@@ -1,10 +1,18 @@
 import React from 'react';
 import PageTitle from '../../components/layout/PageTitle';
 import SectionTitle from '../../components/layout/SectionTitle.jsx';
-import useCounter from '../../Hooks/useCount.js';
+import useCount from '../../Hooks/useCount.js';
+import useFetch from '../../Hooks/useFetch.js';
 
 const UseCustom = (props) => {
-    const [count, inc, dec] = useCounter(0);
+    const [count, inc, dec] = useCount(0);
+    const { dados } = useFetch('http://files.cod3r.com.br/curso-react/estados.json');
+
+    const showStates = (states) => {
+        return states.map(({ nome, sigla }) => (
+            <li key={sigla}>{nome} - {sigla}</li>
+        ));
+    }
 
     return (
         <div className="UseCustom">
@@ -20,6 +28,13 @@ const UseCustom = (props) => {
                     <button className="btn" onClick={inc} >+</button>
                     <button className="btn" onClick={dec} >-</button>
                 </div>
+            </div>
+
+            <SectionTitle title="Exercício #02" />
+            <div className="center">
+                <ul>
+                    {dados && showStates(dados)}
+                </ul>
             </div>
         </div>
     );
